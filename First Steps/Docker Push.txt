@@ -1,0 +1,9 @@
+Primero hacer login con tus credenciales:
+    docker login
+
+Poner le una etiqueta a la imagen con tu nombre de usuario y nombre de la imagen:
+    docker tag [Name Image Local] [dockerhub username]/[Image name]
+    docker tag flask-server byjarryfull/flask-server
+
+Realizar el push a docker hub
+    docker push byjarryfull/flask-server

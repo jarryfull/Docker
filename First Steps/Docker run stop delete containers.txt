@@ -1,0 +1,33 @@
+Comando para correr una imagen de centos con el comando top:
+docker container run -t centos top
+
+Para correr un contenedor dinamico le agregamos el parametro -i 
+docker container run -it centos top
+
+Si quieres correr una terminal de forma interactiva en tu contenedor:
+docker container exec -it [nombre/ container id] bash
+docker container exec -it centos bash
+
+Para correr una imagen de centos en background mapeando el puerto 8080 del host local hacia el puerto 80 
+del contenendor y al final pasando el comando que se ejecutara.
+docker container run -it --detach --publish 8080:80 --name centos [imagen] [comando]
+docker container run -it --detach --publish 8080:80 --name centos centos bash
+
+-it               : Interactiva
+--detach          : background
+--publish 8080:80 : Mapear el puerto 8080 del host local hacia el puerto 80 del contenedor
+--name            : nombre para el contenedor para eliminarlo mas facil en esta caso se llamo "centos"
+
+Lista las imagenes:
+docker images 
+
+Lista las contenedores que se estan corriendo:
+docker container ls
+
+Para detener un contenedor:
+docker container stop [container id] [container id] [container id]
+docker container stop d67 ead af5
+
+Para eliminar contenedores que estan detenidos:
+docker system prune
+

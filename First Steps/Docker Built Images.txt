@@ -1,0 +1,31 @@
+Crear un archivo con el siguiente texto para montar un servidor de flask guardalo con el nombre "app.py" :
+
+    from flask import Flask
+
+    app = Flask(__name__)
+
+    @app.route("/")
+    def hello():
+        return "Hello Beautiful World!"
+
+    if __name__ == "__main__":
+        app.run(host='0.0.0.0')
+
+Primer paso para hacer el build llamado "Dockerfile" con lo siguiente:
+    FROM python:3.6.1-alpine
+    RUN pip install flask
+    CMD ["python","app.py"]
+    COPY app.py /app.py
+    
+    FROM : Imagen de Docker ( En este caso python:3.6.1-alpine )
+    RUN  : Para ejecutar comandos ( En este caso se instalara flask con "pip")
+    CMD  : Es el comando que se ejecutara al iniciar el contenedor ( En este caso con python ejecutaremos "app.py")
+    COPY : Comando para copiar archivos ( En este caso localmente se copiara "app.py" al contenedor en la ruta "/app.py")
+
+Para crear la imagen:
+    docker image build -t [tag] [ Directorio con los archivos ]
+    docker image build -t flask-server .
+
+Para ver los logs de un container ejecutar:
+docker container logs [container id]
+
